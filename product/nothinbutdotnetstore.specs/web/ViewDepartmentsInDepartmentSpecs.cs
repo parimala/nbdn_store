@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Machine.Specifications;
 using Machine.Specifications.DevelopWithPassion.Rhino;
 using nothinbutdotnetstore.tasks;
@@ -7,38 +7,39 @@ using nothinbutdotnetstore.web.application.model;
 using nothinbutdotnetstore.web.infrastructure;
 using Rhino.Mocks;
 
+
 namespace nothinbutdotnetstore.specs.web
 {
-    public class ViewMainDepartmentsInTheStoreSpecs
+    public class ViewDepartmentsInDepartmentSpecs
     {
         public abstract class concern : Observes<ApplicationCommand,
-                                            ViewMainDepartmentsInTheStore>
+                                          ViewDepartmentsinDepartment>
         {
         }
 
-        [Subject(typeof(ViewMainDepartmentsInTheStore))]
+        [Subject(typeof(ViewDepartmentsinDepartment))]
         public class when_processing : concern
         {
             Establish c = () =>
             {
                 response_engine = the_dependency<ResponseEngine>();
                 department_repository = the_dependency<Repository>();
-                the_main_departments = new List<Department>();
+                the_departments = new List<Department>();
                 request = an<Request>();
 
                 department_repository.Stub(x => x.get_all_the__departments_in_the_department()).Return(
-                    the_main_departments);
+                    the_departments);
             };
 
             Because b = () =>
                 sut.process(request);
 
-            It should_tell_the_response_to_display_the_main_departments = () =>
-                response_engine.received(x => x.prepare(the_main_departments));
+            It Should_tell_Departments_in_Department_In_Stores = () =>
+                response_engine.received(x => x.prepare(the_departments));
 
             static Repository department_repository;
             static Request request;
-            static IEnumerable<Department> the_main_departments;
+            static IEnumerable<Department> the_departments;
             static ResponseEngine response_engine;
         }
     }

@@ -72,6 +72,7 @@
     <Compile Include="web\infrastructure\stubs\StubRequestFactory.cs" />
     <Compile Include="web\infrastructure\stubs\StubResponseEngine.cs" />
     <Compile Include="web\infrastructure\stubs\StubSetOfCommands.cs" />
+    <Compile Include="web\application\ViewDepartmentsinDepartment.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
